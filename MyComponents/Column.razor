@@ -7,7 +7,7 @@
 
 	[Parameter, EditorRequired()] public string HeaderText { get; set; } = string.Empty;
 
-	[Parameter] public RenderFragment<TItem> ItemTemplate { get; set; } = null!;
+	[Parameter] public RenderFragment<TItem> ChildContent { get; set; } = null!;
 
 	[CascadingParameter(Name = "ParentGrid")] public Grid<TItem>? ParentGrid { get; set; }
 

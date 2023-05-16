@@ -3,11 +3,13 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.6.33513.286
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MyBlazorApp", "MyBlazorApp\MyBlazorApp.csproj", "{36620591-F142-4A5B-AB46-AFEAEF10D25A}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MyBlazorApp", "MyBlazorApp\MyBlazorApp.csproj", "{36620591-F142-4A5B-AB46-AFEAEF10D25A}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MyComponents", "MyComponents\MyComponents.csproj", "{2ED4D274-4344-4AB8-8A06-4B6ADA9BC11F}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MyMauiApp", "MyMauiApp\MyMauiApp.csproj", "{1790DAED-DB24-4E89-B584-3653E919A38B}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MyMauiApp", "MyMauiApp\MyMauiApp.csproj", "{1790DAED-DB24-4E89-B584-3653E919A38B}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MyServerApp", "MyServerApp\MyServerApp.csproj", "{C959CCCB-A804-4C75-8A62-64562FC78BBB}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -29,6 +31,10 @@ Global
 		{1790DAED-DB24-4E89-B584-3653E919A38B}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{1790DAED-DB24-4E89-B584-3653E919A38B}.Release|Any CPU.Build.0 = Release|Any CPU
 		{1790DAED-DB24-4E89-B584-3653E919A38B}.Release|Any CPU.Deploy.0 = Release|Any CPU
+		{C959CCCB-A804-4C75-8A62-64562FC78BBB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C959CCCB-A804-4C75-8A62-64562FC78BBB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C959CCCB-A804-4C75-8A62-64562FC78BBB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C959CCCB-A804-4C75-8A62-64562FC78BBB}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

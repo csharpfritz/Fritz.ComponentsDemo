@@ -1,32 +1,41 @@
 ﻿@typeparam TItem
 
-<table class="table">
+@if (Items == null)
+{
+	@LoadingTemplate
+}
+else
+{
+	<table class="table">
 
-	<thead>
-		@foreach (var column in ColumnList)
-		{
+		<thead>
+			@foreach (var column in ColumnList)
+			{
 			<th>@column.HeaderText</th>
-		}
-	</thead>
-	<tbody>
-		@foreach (var item in Items)
-		{
-			<tr>
-				@foreach (var column in ColumnList)
-				{
-					<td @onclick="column.Clicked" style="@(column.Attributes?.ContainsKey("style") ?? false ? column.Attributes["style"] : "")" @attributes="column.Attributes">@column.ItemTemplate(item)</td>
-				}
-			</tr>
-		}
-	</tbody>
+			}
+		</thead>
+		<tbody>
+			@foreach (var item in Items)
+			{
+				<tr>
+					@foreach (var column in ColumnList)
+					{
+						<td @onclick="column.Clicked" style="@(column.Attributes?.ContainsKey("style") ?? false ? column.Attributes["style"] : "")" @attributes="column.Attributes">@column.ChildContent(item)</td>
+					}
+				</tr>
+			}
+		</tbody>
 
-</table>
+	</table>
 
-<CascadingValue Name="ParentGrid" Value="this">
-	@Columns
-</CascadingValue>
+	<CascadingValue Name="ParentGrid" Value="this">
+		@Columns
+	</CascadingValue>
+}
 
 @code {
+
+	[Parameter] public RenderFragment LoadingTemplate { get; set; }
 
 	[Parameter, EditorRequired] public RenderFragment Columns { get; set; }
 

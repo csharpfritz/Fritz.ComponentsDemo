@@ -8,29 +8,23 @@
 
 <p>This component demonstrates fetching data from the server.</p>
 
-@if (forecasts == null)
-{
-    <p><em>Loading...</em></p>
-}
-else
-{
 	<Grid Items="forecasts">
+		<LoadingTemplate>
+			<p><em>Loading...</em></p>
+		</LoadingTemplate>
 		<Columns>
-			<Column TItem="WeatherForecast" HeaderText="Date" width="300px">
-				<ItemTemplate>@context.Date.ToShortDateString()</ItemTemplate>
-			</Column>
+			<Column TItem="WeatherForecast" HeaderText="Date" width="300px">@context.Date.ToShortDateString()</Column>
 			<Column TItem="WeatherForecast" HeaderText="Temp. (C)" style="font-weight: bold; text-decoration: underline; color: red;">
-				<ItemTemplate>@context.TemperatureC</ItemTemplate>
+				@context.TemperatureC
 			</Column>
 			<Column TItem="WeatherForecast" HeaderText="Temp. (F)">
-				<ItemTemplate>@context.TemperatureF</ItemTemplate>
+				@context.TemperatureF
 			</Column>
 			<Column TItem="WeatherForecast" HeaderText="Summary">
-				<ItemTemplate>@context.Summary</ItemTemplate>
+				@context.Summary
 			</Column>
 		</Columns>
 	</Grid>
-}
 
 @code {
     private WeatherForecast[]? forecasts;

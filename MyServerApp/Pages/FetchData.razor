@@ -1,8 +1,9 @@
 ﻿@page "/fetchdata"
-
 @using MyComponents
-@using MyMauiApp.Data
+@using MyServerApp.Data
 @inject WeatherForecastService ForecastService
+
+<PageTitle>Weather forecast</PageTitle>
 
 <h1>Weather forecast</h1>
 
@@ -27,10 +28,10 @@
 </Grid>
 
 @code {
-    private WeatherForecast[] forecasts;
+    private WeatherForecast[]? forecasts;
 
     protected override async Task OnInitializedAsync()
     {
-        forecasts = await ForecastService.GetForecastAsync(DateTime.Now);
+        forecasts = await ForecastService.GetForecastAsync(DateOnly.FromDateTime(DateTime.Now));
     }
 }
