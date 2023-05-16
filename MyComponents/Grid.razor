@@ -1,0 +1,43 @@
+﻿@typeparam TItem
+
+<table class="table">
+
+	<thead>
+		@foreach (var column in ColumnList)
+		{
+			<th>@column.HeaderText</th>
+		}
+	</thead>
+	<tbody>
+		@foreach (var item in Items)
+		{
+			<tr>
+				@foreach (var column in ColumnList)
+				{
+					<td @onclick="column.Clicked" style="@(column.Attributes?.ContainsKey("style") ?? false ? column.Attributes["style"] : "")" @attributes="column.Attributes">@column.ItemTemplate(item)</td>
+				}
+			</tr>
+		}
+	</tbody>
+
+</table>
+
+<CascadingValue Name="ParentGrid" Value="this">
+	@Columns
+</CascadingValue>
+
+@code {
+
+	[Parameter, EditorRequired] public RenderFragment Columns { get; set; }
+
+	private List<Column<TItem>> ColumnList { get; set; } = new List<Column<TItem>>();
+
+	[Parameter] public IEnumerable<TItem> Items { get; set; } = Enumerable.Empty<TItem>();
+
+	internal void AddColumn(Column<TItem> column)
+	{
+		ColumnList.Add(column);
+		StateHasChanged();
+	}
+
+}

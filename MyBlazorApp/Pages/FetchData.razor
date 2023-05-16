@@ -1,0 +1,53 @@
+﻿@page "/fetchdata"
+@inject HttpClient Http
+@using MyComponents
+
+<PageTitle>Weather forecast</PageTitle>
+
+<h1>Weather forecast</h1>
+
+<p>This component demonstrates fetching data from the server.</p>
+
+@if (forecasts == null)
+{
+    <p><em>Loading...</em></p>
+}
+else
+{
+	<Grid Items="forecasts">
+		<Columns>
+			<Column TItem="WeatherForecast" HeaderText="Date" width="300px">
+				<ItemTemplate>@context.Date.ToShortDateString()</ItemTemplate>
+			</Column>
+			<Column TItem="WeatherForecast" HeaderText="Temp. (C)" style="font-weight: bold; text-decoration: underline; color: red;">
+				<ItemTemplate>@context.TemperatureC</ItemTemplate>
+			</Column>
+			<Column TItem="WeatherForecast" HeaderText="Temp. (F)">
+				<ItemTemplate>@context.TemperatureF</ItemTemplate>
+			</Column>
+			<Column TItem="WeatherForecast" HeaderText="Summary">
+				<ItemTemplate>@context.Summary</ItemTemplate>
+			</Column>
+		</Columns>
+	</Grid>
+}
+
+@code {
+    private WeatherForecast[]? forecasts;
+
+    protected override async Task OnInitializedAsync()
+    {
+        forecasts = await Http.GetFromJsonAsync<WeatherForecast[]>("sample-data/weather.json");
+    }
+
+    public class WeatherForecast
+    {
+        public DateOnly Date { get; set; }
+
+        public int TemperatureC { get; set; }
+
+        public string? Summary { get; set; }
+
+        public int TemperatureF => 32 + (int)(TemperatureC / 0.5556);
+    }
+}

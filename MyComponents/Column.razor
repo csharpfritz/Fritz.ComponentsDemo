@@ -1,0 +1,49 @@
+﻿@using Microsoft.JSInterop;
+@typeparam TItem
+@inject IJSRuntime JSRuntime
+@implements IAsyncDisposable
+
+@code {
+
+	[Parameter, EditorRequired()] public string HeaderText { get; set; } = string.Empty;
+
+	[Parameter] public RenderFragment<TItem> ItemTemplate { get; set; } = null!;
+
+	[CascadingParameter(Name = "ParentGrid")] public Grid<TItem>? ParentGrid { get; set; }
+
+	[Parameter(CaptureUnmatchedValues =true)] public Dictionary<string, object>? Attributes { get; set; }
+
+	private IJSObjectReference module;
+	protected override async Task OnInitializedAsync()
+	{
+
+		if (ParentGrid == null)
+		{
+			throw new InvalidOperationException($"{nameof(Column<TItem>)} must be placed inside a {nameof(Grid<TItem>)} component");
+		}
+		ParentGrid.AddColumn(this);
+	}
+
+	protected override async Task OnAfterRenderAsync(bool firstRender)
+	{
+		if (firstRender)
+		{
+			module = await JSRuntime.InvokeAsync<IJSObjectReference>(
+				"import", "./_content/MyComponents/Column.razor.js");
+		}
+	}
+
+	public async Task Clicked()
+	{
+		await module.InvokeVoidAsync("Clicked", HeaderText);
+	}
+
+	public async ValueTask DisposeAsync()
+	{
+		if (module != null)
+		{
+			await module.DisposeAsync();
+		}
+	}
+
+}

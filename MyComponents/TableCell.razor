@@ -1,0 +1,8 @@
+﻿<td style="@(Attributes?.ContainsKey("style") ?? false ? Attributes["style"] : "")" @attributes="Attributes">@ChildContent</td>
+@code {
+
+	[Parameter] public RenderFragment ChildContent { get; set; }
+
+	[Parameter(CaptureUnmatchedValues =true)] public Dictionary<string, object>? Attributes { get; set; }
+
+}
