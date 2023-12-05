@@ -14,14 +14,14 @@
 		<p><em>Loading...</em></p>
 	</LoadingTemplate>
 	<Columns>
-		<Column TItem="WeatherForecast" HeaderText="Date" width="300px">@context.Date.ToShortDateString()</Column>
-		<Column TItem="WeatherForecast" HeaderText="Temp. (C)" style="font-weight: bold; text-decoration: underline; color: red;">
+		<Column HeaderText="Date" width="300px">@context.Date.ToShortDateString()</Column>
+		<Column HeaderText="Temp. (C)" style="font-weight: bold; text-decoration: underline; color: red;">
 			@context.TemperatureC
 		</Column>
-		<Column TItem="WeatherForecast" HeaderText="Temp. (F)">
+		<Column HeaderText="Temp. (F)">
 			@context.TemperatureF
 		</Column>
-		<Column TItem="WeatherForecast" HeaderText="Summary">
+		<Column HeaderText="Summary">
 			@context.Summary
 		</Column>
 	</Columns>
